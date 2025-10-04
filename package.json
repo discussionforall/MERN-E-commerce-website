@@ -1,0 +1,48 @@
+{
+  "name": "mern-practice",
+  "version": "1.0.0",
+  "description": "MERN Stack Practice Project with RBAC and E-commerce features",
+  "scripts": {
+    "check:frontend": "cd frontend && npm run build && npm run lint && npm run format:check",
+    "check:backend": "cd backend && npm run build && npm run lint && npm run format:check",
+    "check:all": "npm run check:frontend && npm run check:backend",
+    "fix:frontend": "cd frontend && npm run lint:fix && npm run format",
+    "fix:backend": "cd backend && npm run lint:fix && npm run format",
+    "fix:all": "npm run fix:frontend && npm run fix:backend",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:all": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build:all": "npm run build:backend && npm run build:frontend",
+    "start:frontend": "cd frontend && npm run preview",
+    "start:backend": "cd backend && npm run start",
+    "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "format:frontend": "cd frontend && npm run format",
+    "format:backend": "cd backend && npm run format",
+    "lint:fix:frontend": "cd frontend && npm run lint:fix",
+    "lint:fix:backend": "cd backend && npm run lint:fix"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express",
+    "typescript",
+    "ecommerce",
+    "rbac"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

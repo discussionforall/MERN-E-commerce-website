@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+
+        .endpoint-list {
+            list-style: none;
+        }
+
+        .endpoint-list li {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .endpoint-list li:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 10px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .method.get { background: #27ae60; color: white; }
+        .method.post { background: #f39c12; color: white; }
+        .method.put { background: #3498db; color: white; }
+        .method.delete { background: #e74c3c; color: white; }
+
+        .endpoint-path {
+            font-family: 'Courier New', monospace;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .endpoint-description {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .info-item .icon {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .info-item .label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .info-item .value {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer .links a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer .links a:hover {
+            color: #2980b9;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .tech-item {
+            background: #ecf0f1;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer .links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-shopping-cart"></i> <%= title %></h1>
+            <p><%= message %></p>
+            <div class="status-badge">
+                <i class="fas fa-check-circle"></i> Server Online
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="card">
+                <h3><i class="fas fa-user-shield card-icon"></i> Authentication</h3>
+                <ul class="endpoint-list">
+                    <li>
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/api/auth/register</span>
+                        <div class="endpoint-description">Register a new user account</div>
+                    </li>
+                    <li>
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/api/auth/login</span>
+                        <div class="endpoint-description">User login and get JWT token</div>
+                    </li>
+                    <li>
+                        <span class="method get">GET</span>
+                        <span class="endpoint-path">/api/auth/profile</span>
+                        <div class="endpoint-description">Get current user profile</div>
+                    </li>
+                    <li>
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/api/auth/logout</span>
+                        <div class="endpoint-description">User logout</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-box card-icon"></i> Products</h3>
+                <ul class="endpoint-list">
+                    <li>
+                        <span class="method get">GET</span>
+                        <span class="endpoint-path">/api/products</span>
+                        <div class="endpoint-description">Get all products with pagination</div>
+                    </li>
+                    <li>
+                        <span class="method get">GET</span>
+                        <span class="endpoint-path">/api/products/:id</span>
+                        <div class="endpoint-description">Get product by ID</div>
+                    </li>
+                    <li>
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/api/products</span>
+                        <div class="endpoint-description">Create new product (Admin only)</div>
+                    </li>
+                    <li>
+                        <span class="method put">PUT</span>
+                        <span class="endpoint-path">/api/products/:id</span>
+                        <div class="endpoint-description">Update product (Admin only)</div>
+                    </li>
+                    <li>
+                        <span class="method delete">DELETE</span>
+                        <span class="endpoint-path">/api/products/:id</span>
+                        <div class="endpoint-description">Delete product (Admin only)</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-shopping-cart card-icon"></i> Shopping Cart</h3>
+                <ul class="endpoint-list">
+                    <li>
+                        <span class="method get">GET</span>
+                        <span class="endpoint-path">/api/cart</span>
+                        <div class="endpoint-description">Get user's cart items</div>
+                    </li>
+                    <li>
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/api/cart/add</span>
+                        <div class="endpoint-description">Add item to cart</div>
+                    </li>
+                    <li>
+                        <span class="method put">PUT</span>
+                        <span class="endpoint-path">/api/cart/update</span>
+                        <div class="endpoint-description">Update cart item quantity</div>
+                    </li>
+                    <li>
+                        <span class="method delete">DELETE</span>
+                        <span class="endpoint-path">/api/cart/remove</span>
+                        <div class="endpoint-description">Remove item from cart</div>
+                    </li>
+                    <li>
+                        <span class="method delete">DELETE</span>
+                        <span class="endpoint-path">/api/cart/clear</span>
+                        <div class="endpoint-description">Clear entire cart</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-credit-card card-icon"></i> Payments</h3>
+                <ul class="endpoint-list">
+                    <li>
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/api/payments/create-intent</span>
+                        <div class="endpoint-description">Create Stripe payment intent</div>
+                    </li>
+                    <li>
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/api/payments/confirm</span>
+                        <div class="endpoint-description">Confirm payment completion</div>
+                    </li>
+                    <li>
+                        <span class="method get">GET</span>
+                        <span class="endpoint-path">/api/payments/history</span>
+                        <div class="endpoint-description">Get user's payment history</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-heartbeat card-icon"></i> System Health</h3>
+                <ul class="endpoint-list">
+                    <li>
+                        <span class="method get">GET</span>
+                        <span class="endpoint-path">/api/health</span>
+                        <div class="endpoint-description">Check server health status</div>
+                    </li>
+                </ul>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <div class="label">Server Time</div>
+                        <div class="value" id="server-time"><%= new Date(timestamp).toLocaleString() %></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-code-branch"></i></div>
+                        <div class="label">Environment</div>
+                        <div class="value"><%= environment %></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-plug card-icon"></i> Real-time Features</h3>
+                <ul class="endpoint-list">
+                    <li>
+                        <span class="method get">GET</span>
+                        <span class="endpoint-path">Socket.IO Connection</span>
+                        <div class="endpoint-description">Real-time updates for cart, orders, and admin notifications</div>
+                    </li>
+                </ul>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-broadcast-tower"></i></div>
+                        <div class="label">WebSocket</div>
+                        <div class="value">Active</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="label">Authentication</div>
+                        <div class="value">JWT Required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>MERN Stack E-commerce API with Role-Based Access Control</strong></p>
+            <p>Built with modern technologies and best practices</p>
+            
+            <div class="tech-stack">
+                <span class="tech-item">Node.js</span>
+                <span class="tech-item">Express.js</span>
+                <span class="tech-item">TypeScript</span>
+                <span class="tech-item">MongoDB</span>
+                <span class="tech-item">Mongoose</span>
+                <span class="tech-item">JWT</span>
+                <span class="tech-item">Socket.IO</span>
+                <span class="tech-item">Stripe</span>
+                <span class="tech-item">EJS</span>
+            </div>
+
+            <div class="links">
+                <a href="/api/health" target="_blank">
+                    <i class="fas fa-heartbeat"></i> Health Check
+                </a>
+                <a href="https://github.com" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://documentation" target="_blank">
+                    <i class="fas fa-book"></i> Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update server time every second
+        function updateTime() {
+            const serverTime = new Date('<%= timestamp %>');
+            const now = new Date();
+            const timeDiff = now - serverTime;
+            const currentTime = new Date(now.getTime() + timeDiff);
+            document.getElementById('server-time').textContent = currentTime.toLocaleString();
+        }
+
+        // Update time immediately and then every second
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+  services:
+    backend:
+      build: 
+        context: ./backend
+        dockerfile: Dockerfile
+      container_name: backend
+      restart: always
+      ports:
+        - "5000:5000"
+      env_file:
+        - ./backend/config.env.example
+      depends_on:
+        - mongo
+
+    frontend:
+      build:
+        context: ./frontend
+        dockerfile: Dockerfile
+      container_name: frontend
+      restart: always
+      ports:
+        - "5173:80"
+      environment:
+        - VITE_API_URL=http://backend:5000/api
+        - VITE_SOCKET_URL=http://backend:5000
+      depends_on:
+        - backend
+
+    mongo:
+      image: mongo:7
+      container_name: mongo
+      restart: always
+      ports:
+        - "27017:27017"
+      volumes:
+        - mongo_data:/data/db
+
+  volumes:
+    mongo_data:

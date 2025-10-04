@@ -1,0 +1,2 @@
+Name,Description,Price,Category,Stock,Image URL,Primary Image URL,All Image URLs,Created By,Created At
+Sample Product,This is a sample product description,99.99,electronics,10,https://example.com/image.jpg,https://example.com/primary-image.jpg,https://example.com/image1.jpg;https://example.com/image2.jpg,admin,2025-09-25T06:57:12.008Z
