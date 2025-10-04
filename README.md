@@ -59,6 +59,23 @@ A comprehensive full-stack e-commerce application built with the MERN stack (Mon
 - Real-time statistics
 - Sales analytics and reporting
 
+## 📸 Screenshots
+
+### Homepage
+![Homepage](https://raw.githubusercontent.com/discussionforall/MERN-E-commerce-website/refs/heads/main/screenshots/homepage.png)
+
+### Product Details
+![Product Details](https://raw.githubusercontent.com/discussionforall/MERN-E-commerce-website/refs/heads/main/screenshots/product-details.png)
+
+### Shopping Cart
+![Shopping Cart](https://raw.githubusercontent.com/discussionforall/MERN-E-commerce-website/refs/heads/main/screenshots/cart.png)
+
+### Admin - Product Management
+![Admin Product Management](https://raw.githubusercontent.com/discussionforall/MERN-E-commerce-website/refs/heads/main/screenshots/admin-manage-prod.png)
+
+### Admin - Coupon Management
+![Admin Coupon Management](https://raw.githubusercontent.com/discussionforall/MERN-E-commerce-website/refs/heads/main/screenshots/admin-coupon.png)
+
 ## 🛠️ Tech Stack
 
 ### Backend
